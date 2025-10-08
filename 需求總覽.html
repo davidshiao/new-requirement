@@ -1,0 +1,442 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>列管案件及訴願審議資訊系統新案功能需求彙總</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .slide {
+            display: none;
+            min-height: 70vh;
+        }
+        .slide.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .active {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .step-card, .menu-card {
+            transition: all 0.3s ease;
+        }
+        .step-card:hover, .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-slate-800 flex flex-col items-center justify-center min-h-screen p-4">
+
+    <div class="w-full max-w-5xl bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200">
+        <!-- Presentation Content -->
+        <main id="presentation-container" class="p-6 md:p-10">
+            <!-- Slide 1: Title -->
+            <section id="slide-1" class="slide active">
+                <div class="flex flex-col items-center justify-center h-full text-center">
+                    <div class="bg-gradient-to-br from-sky-500 to-indigo-600 p-4 rounded-full mb-6 inline-block">
+                        <i data-lucide="layers" class="w-12 h-12 text-white"></i>
+                    </div>
+                    <h1 class="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-sky-600 to-indigo-600">
+                        列管案件及訴願審議資訊系統新案功能需求彙總
+                    </h1>
+                    <p class="mt-4 text-lg text-slate-600 max-w-2xl">
+                        一份整合「評比業務電子化」與「各單位系統功能」需求的綜合簡報
+                    </p>
+                </div>
+            </section>
+
+            <!-- Slide 2: Main Menu -->
+            <section id="slide-2" class="slide">
+                <h2 class="text-3xl font-bold mb-8 text-center text-gray-800">簡報目錄</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="menu-card bg-white p-8 rounded-lg cursor-pointer border border-slate-200 text-center" onclick="goToSlide(2)">
+                        <div class="bg-indigo-100 p-3 rounded-full mb-4 inline-block">
+                            <i data-lucide="file-check-2" class="w-10 h-10 text-indigo-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-indigo-800">A. 評比業務電子化需求</h3>
+                        <p class="text-sm text-slate-500 mt-2">涵蓋個案計畫評核、公文檢核、政府服務獎及自行研究計畫等四項業務的電子化流程。</p>
+                    </div>
+                    <div class="menu-card bg-white p-8 rounded-lg cursor-pointer border border-slate-200 text-center" onclick="goToSlide(9)">
+                        <div class="bg-teal-100 p-3 rounded-full mb-4 inline-block">
+                             <i data-lucide="file-spreadsheet" class="w-10 h-10 text-teal-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-teal-800">B. 各單位系統功能需求</h3>
+                        <p class="text-sm text-slate-500 mt-2">整合綜規司、法制處及主秘室提出的系統優化、管考追蹤與流程改善等功能需求。</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- SECTION A: 評比業務電子化需求 -->
+
+            <!-- Slide 3: Section A Overview -->
+            <section id="slide-3" class="slide">
+                <h2 class="text-3xl font-bold mb-8 text-center text-indigo-800">A. 評比業務電子化需求</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-slate-50 p-6 rounded-lg border border-slate-200 flex items-center">
+                        <i data-lucide="file-text" class="w-8 h-8 text-sky-500 mr-4 shrink-0"></i>
+                        <h3 class="text-xl font-semibold">個案計畫評核</h3>
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-lg border border-slate-200 flex items-center">
+                        <i data-lucide="file-search" class="w-8 h-8 text-green-500 mr-4 shrink-0"></i>
+                        <h3 class="text-xl font-semibold">公文檢核</h3>
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-lg border border-slate-200 flex items-center">
+                        <i data-lucide="award" class="w-8 h-8 text-amber-500 mr-4 shrink-0"></i>
+                        <h3 class="text-xl font-semibold">政府服務獎部內評選</h3>
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-lg border border-slate-200 flex items-center">
+                        <i data-lucide="flask-conical" class="w-8 h-8 text-rose-500 mr-4 shrink-0"></i>
+                        <h3 class="text-xl font-semibold">自行研究計畫</h3>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 4: 個案計畫評核 -->
+            <section id="slide-4" class="slide">
+                <h2 class="text-3xl font-bold mb-2 text-center text-sky-800">A1：個案計畫評核</h2>
+                 <p class="text-center text-slate-500 mb-6">計畫數量：約13-22件 | 外聘委員：約5-7人</p>
+                <div class="space-y-3">
+                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200"><strong>需求一 (綜規司):</strong> 上傳受評資料(一)、評分須知及作業規定 (PDF)，供委員線上閱覽下載。</div>
+                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200"><strong>需求二 (外聘委員):</strong> 線上鍵入初評意見，系統產出意見彙整報表 (依委員/計畫別)。</div>
+                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200"><strong>需求三 (受評單位):</strong> 針對委員意見，線上鍵入回復說明 (含限期通知與填報鎖定功能)。</div>
+                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200"><strong>需求四 (受評單位):</strong> 於系統上傳受評資料(二) (含限期通知與填報鎖定功能)。</div>
+                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200"><strong>需求五 (外聘委員):</strong> 線上鍵入最終評分及第二次評比意見。</div>
+                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200"><strong>需求六 (系統):</strong> 總評分及等第統計，並匯出報表。</div>
+                    <div class="p-4 rounded-lg bg-indigo-100 border-indigo-200 border"><strong>備註:</strong> 系統需保留同仁為部分委員代鍵資料的功能。</div>
+                </div>
+            </section>
+
+            <!-- Slide 5: 公文檢核 -->
+            <section id="slide-5" class="slide">
+                 <h2 class="text-3xl font-bold mb-2 text-center text-green-800">A2：公文檢核</h2>
+                 <p class="text-center text-slate-500 mb-6">公文數量：約200-250件 (約1.82GB) | 外聘委員：約5-7人</p>
+                <div class="space-y-4">
+                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200"><strong>需求一 (綜規司):</strong> 上傳抽調公文及文書檢核計畫規定 (PDF)，供委員線上閱覽下載。</div>
+                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200"><strong>需求二 (外聘委員):</strong> 針對每件公文，於「評分標準表」中勾選檢核項目、填寫優缺點建議、評比名次及評分。</div>
+                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200"><strong>需求三 (系統):</strong> 彙整每位委員填寫的「評分標準表」內容，並產出資料報表。</div>
+                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200"><strong>需求四 (系統):</strong> 彙整各單位(機關)的評分結果，產出總表。</div>
+                </div>
+            </section>
+
+            <!-- Slide 6: 政府服務獎 -->
+            <section id="slide-6" class="slide">
+                 <h2 class="text-3xl font-bold mb-2 text-center text-amber-800">A3：政府服務獎部內評選</h2>
+                 <p class="text-center text-slate-500 mb-6">計畫數量：約10件以內 (分2組) | 外聘委員：約5-7人</p>
+                <div class="space-y-4">
+                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200"><strong>需求一 (綜規司):</strong> 分組上傳受評資料(一)、評比說明、委員評分表及意見表 (PDF)，供委員線上閱覽下載。</div>
+                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200"><strong>需求二 (外聘委員):</strong> 分組鍵入審查結果及意見，系統產出彙整報表 (依委員/計畫別)。</div>
+                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200"><strong>需求三 (受評單位):</strong> 針對委員意見，線上鍵入回復說明 (含限期通知與填報鎖定功能)。</div>
+                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200"><strong>需求四 (外聘委員):</strong> 審查推薦參選單位的修正資料，並產出意見彙整報表。</div>
+                </div>
+            </section>
+
+            <!-- Slide 7: 自行研究計畫 -->
+            <section id="slide-7" class="slide">
+                <h2 class="text-3xl font-bold mb-2 text-center text-rose-800">A4：自行研究計畫 (含初評及複評)</h2>
+                <p class="text-center text-slate-500 mb-6">初評：約20-26件 | 複評：約12件 (取前6名) | 外聘委員：約5-7人</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="border-t-2 border-rose-300 pt-4">
+                        <h3 class="font-bold text-lg mb-2 text-rose-700">初評階段</h3>
+                        <div class="space-y-3">
+                            <div class="p-3 rounded-md text-sm bg-slate-50 border border-slate-200"><strong>需求一 (綜規司):</strong> 上傳受評資料、評分說明及獎勵要點 (PDF)。</div>
+                            <div class="p-3 rounded-md text-sm bg-slate-50 border border-slate-200"><strong>需求二 (外聘委員):</strong> 鍵入初評意見、總分及等第，系統產出分數及序位一覽表。</div>
+                        </div>
+                    </div>
+                    <div class="border-t-2 border-rose-300 pt-4">
+                        <h3 class="font-bold text-lg mb-2 text-rose-700">複評階段</h3>
+                         <div class="space-y-3">
+                            <div class="p-3 rounded-md text-sm bg-slate-50 border border-slate-200"><strong>需求三 (複評單位):</strong> 回覆委員意見並上傳簡報資料 (含限期通知與鎖定)。</div>
+                            <div class="p-3 rounded-md text-sm bg-slate-50 border border-slate-200"><strong>需求四 (外聘委員):</strong> 鍵入複評總分、等第及第二次評比意見。</div>
+                            <div class="p-3 rounded-md text-sm bg-slate-50 border border-slate-200"><strong>需求五 (系統):</strong> 統計複評總分及等第，匯出報表。</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Slide 8: Common Features (Section A) -->
+            <section id="slide-8" class="slide">
+                <h2 class="text-3xl font-bold mb-8 text-center text-indigo-800">A區共通核心功能</h2>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-center">
+                    <div class="p-4 rounded-lg flex flex-col items-center justify-center bg-slate-50 border border-slate-200">
+                        <i data-lucide="upload-cloud" class="w-8 h-8 mb-2 text-indigo-500"></i>
+                        <span>檔案上傳/下載</span>
+                    </div>
+                    <div class="p-4 rounded-lg flex flex-col items-center justify-center bg-slate-50 border border-slate-200">
+                        <i data-lucide="edit" class="w-8 h-8 mb-2 text-indigo-500"></i>
+                        <span>線上填報/評分</span>
+                    </div>
+                    <div class="p-4 rounded-lg flex flex-col items-center justify-center bg-slate-50 border border-slate-200">
+                        <i data-lucide="message-square-plus" class="w-8 h-8 mb-2 text-indigo-500"></i>
+                        <span>意見回覆追蹤</span>
+                    </div>
+                     <div class="p-4 rounded-lg flex flex-col items-center justify-center bg-slate-50 border border-slate-200">
+                        <i data-lucide="bar-chart-3" class="w-8 h-8 mb-2 text-indigo-500"></i>
+                        <span>自動化報表產出</span>
+                    </div>
+                    <div class="p-4 rounded-lg flex flex-col items-center justify-center bg-slate-50 border border-slate-200">
+                        <i data-lucide="users" class="w-8 h-8 mb-2 text-indigo-500"></i>
+                        <span>多使用者權限</span>
+                    </div>
+                     <div class="p-4 rounded-lg flex flex-col items-center justify-center bg-slate-50 border border-slate-200">
+                        <i data-lucide="bell-ring" class="w-8 h-8 mb-2 text-indigo-500"></i>
+                        <span>期限通知與鎖定</span>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- TRANSITION SLIDE -->
+            <section id="slide-9" class="slide">
+                <div class="flex flex-col items-center justify-center h-full text-center">
+                    <div class="bg-teal-100 p-3 rounded-full mb-4 inline-block">
+                        <i data-lucide="file-spreadsheet" class="w-10 h-10 text-teal-600"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-teal-800">B. 各單位系統功能需求</h2>
+                    <p class="mt-4 text-lg text-slate-600 max-w-2xl">
+                       接下來將展示綜規司、法制處及主秘室提出的系統功能需求。
+                    </p>
+                </div>
+            </section>
+            
+            <!-- SECTION B: 各單位系統功能需求 -->
+
+            <!-- Slide 10: Section B Overview -->
+            <section id="slide-10" class="slide">
+                <h2 class="text-3xl font-bold mb-8 text-center text-teal-800">B. 各單位需求總覽</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-slate-50 p-6 rounded-lg border border-slate-200 text-center">
+                        <i data-lucide="building-2" class="w-10 h-10 text-teal-500 mx-auto mb-3"></i>
+                        <h3 class="text-xl font-semibold">綜規司</h3>
+                        <p class="text-sm text-slate-500 mt-1">4+1 項主要功能需求</p>
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-lg border border-slate-200 text-center">
+                        <i data-lucide="scale" class="w-10 h-10 text-amber-500 mx-auto mb-3"></i>
+                        <h3 class="text-xl font-semibold">法制處</h3>
+                        <p class="text-sm text-slate-500 mt-1">7 項訴願系統相關需求</p>
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-lg border border-slate-200 text-center">
+                         <i data-lucide="landmark" class="w-10 h-10 text-indigo-500 mx-auto mb-3"></i>
+                        <h3 class="text-xl font-semibold">主任祕書室</h3>
+                        <p class="text-sm text-slate-500 mt-1">1 項案件管制系統優化</p>
+                    </div>
+                </div>
+                 <p class="text-center mt-8 text-slate-600">接下來將深入探討綜規司的四項核心需求。</p>
+            </section>
+
+            <!-- Slide 11: 綜規司 Main Requests -->
+            <section id="slide-11" class="slide">
+                <h2 class="text-3xl font-bold mb-8 text-center text-teal-800">B1：綜規司核心功能</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                        <h3 class="font-semibold text-lg text-teal-700">1. 全國地方環保機關績效考核</h3>
+                        <p class="text-sm text-slate-600 mt-1">建立年度考核計畫架構，彙整各單位考核成績與意見，並自動產出報表。</p>
+                        <p class="text-xs text-slate-400 mt-2">預計完成期限：115.03.31</p>
+                    </div>
+                    <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                        <h3 class="font-semibold text-lg text-teal-700">2. 首長指示及部務會議列管</h3>
+                        <p class="text-sm text-slate-600 mt-1">新增主協辦案件關聯性辨識，並賦予主政單位檢視權限，以利掌握辦理情形。</p>
+                        <p class="text-xs text-slate-400 mt-2">預計完成期限：115.06.30</p>
+                    </div>
+                    <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                        <h3 class="font-semibold text-lg text-teal-700">3. 施政績效指標列管</h3>
+                        <p class="text-sm text-slate-600 mt-1">串接施政先期資料，進行年中及年底追蹤，並自動產出彙整報告。</p>
+                        <p class="text-xs text-slate-400 mt-2">預計完成期限：115.06.30</p>
+                    </div>
+                    <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                        <h3 class="font-semibold text-lg text-teal-700">4. 行政院重要政策指標追蹤</h3>
+                        <p class="text-sm text-slate-600 mt-1">建立行政院核定指標之追蹤機制，進行期中與期末管考，並匯出報告。</p>
+                        <p class="text-xs text-slate-400 mt-2">預計完成期限：115.06.30</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 12: 地方績效考核 -->
+            <section id="slide-12" class="slide">
+                 <h2 class="text-3xl font-bold mb-2 text-center text-teal-800">B1-1：地方績效考核流程</h2>
+                 <p class="text-center text-slate-500 mb-6">使用者：綜規司、本部各考核單位及所屬機關</p>
+                <div class="space-y-4">
+                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200"><strong>步驟一 (綜規司):</strong> 上傳考核計畫，並依計畫創建包含獎項、單位、權重的主架構。</div>
+                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200"><strong>步驟二 (考核單位):</strong> 就各獎項提報各縣市的考核成績、結果與意見。</div>
+                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200"><strong>步驟三 (系統):</strong> 產出各縣市成績總彙整表，並計算總成績及等第。</div>
+                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200"><strong>步驟四 (系統):</strong> 產出各縣市考核結果總表，及各縣市的考核意見彙整。</div>
+                </div>
+            </section>
+            
+            <!-- Slide 13: 首長指示及部務會議列管 -->
+            <section id="slide-13" class="slide">
+                 <h2 class="text-3xl font-bold mb-2 text-center text-teal-800">B1-2：首長指示及部務會議列管</h2>
+                 <p class="text-center text-slate-500 mb-6">使用者：綜規司、本部各考核單位及所屬機關</p>
+                <div class="space-y-4">
+                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200"><strong>需求一 (立案列管):</strong> 同一業務交辦多單位時，由綜規司立案，並以控管編號-1、-2等方式標示主協辦關聯性。</div>
+                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200"><strong>需求二 (權限擴充):</strong> 主政單位(-1)的承辦人及長官，可檢視所有協辦單位(-2, -3...)的辦理情形（僅檢視，不可編輯）。</div>
+                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200"><strong>需求三 (管考執行):</strong> 後續追蹤及解除列管方式維持由管考人員執行。</div>
+                </div>
+            </section>
+
+            <!-- Slide 14: 施政績效指標列管 -->
+            <section id="slide-14" class="slide">
+                 <h2 class="text-3xl font-bold mb-2 text-center text-teal-800">B1-3：施政績效指標列管流程</h2>
+                 <p class="text-center text-slate-500 mb-6">使用者：綜規司、本部單位及所屬機關</p>
+                <div class="space-y-4">
+                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200"><strong>步驟一 (資料匯入):</strong> 從施政先期作業自動帶入施政目標與關鍵績效指標資料。</div>
+                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200"><strong>步驟二 (年中追蹤):</strong> 各單位線上填報指標達成情形及落後原因檢討。</div>
+                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200"><strong>步驟三 (年底填報):</strong> 各單位填報最終達成情形、落後檢討及關鍵策略目標推動成果。</div>
+                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200"><strong>步驟四 (系統):</strong> 匯出各單位年底填報情形，產出一份完整的Word報告。</div>
+                </div>
+            </section>
+
+            <!-- Slide 15: 行政院重要政策指標追蹤 -->
+            <section id="slide-15" class="slide">
+                 <h2 class="text-3xl font-bold mb-2 text-center text-teal-800">B1-4：行政院重要政策指標追蹤</h2>
+                 <p class="text-center text-slate-500 mb-6">使用者：綜規司、本部單位及所屬機關</p>
+                <div class="space-y-4">
+                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200"><strong>步驟一 (綜規司):</strong> 將行政院核定的追蹤管制指標鍵入列管系統。</div>
+                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200"><strong>步驟二 (年中追蹤):</strong> 各單位填報指標達成情形、落後原因檢討及改善措施。</div>
+                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200"><strong>步驟三 (年底追蹤):</strong> 各單位更新最終達成情形、落後原因檢討及改善措施。</div>
+                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200"><strong>步驟四 (系統):</strong> 彙整年底填報資料，產出一份完整的Word報告。</div>
+                </div>
+            </section>
+
+            <!-- Slide 16: Other Requests -->
+            <section id="slide-16" class="slide">
+                <h2 class="text-3xl font-bold mb-8 text-center text-gray-800">B2：其他單位功能需求</h2>
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="font-bold text-lg mb-2 text-indigo-700">主任祕書室</h3>
+                        <div class="p-3 rounded-md text-sm bg-slate-50 border border-slate-200">於「立委/監委案件管制 > 請託案件查詢」的案件狀態中，新增「未送出」選項。</div>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg mb-2 text-teal-700">綜規司 (補充)</h3>
+                        <div class="p-3 rounded-md text-sm bg-slate-50 border border-slate-200">一層長官交辦業務，除管考人員外，新增「業務承辦人」的列管權限，以簡化流程。</div>
+                    </div>
+                     <div>
+                        <h3 class="font-bold text-lg mb-2 text-amber-700">法制處 (訴願系統)</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200">1. 條碼製作可帶出訴願人名稱</div>
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200">2. 審議書上傳後轉檔為議程</div>
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200">3. 新增外審案件審查費表單</div>
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200">4. 調查會議議程及法院撤銷報告案製作</div>
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200">5. 決定書發文日與訴願大會日期一致</div>
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200">6. 新增歸檔警示通知</div>
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200">7. 擴充關鍵字搜尋功能</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 17: End -->
+            <section id="slide-17" class="slide">
+                <div class="flex flex-col items-center justify-center h-full text-center">
+                    <h2 class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-sky-600 to-indigo-600">
+                        結論與展望
+                    </h2>
+                    <p class="mt-4 text-lg text-slate-600 max-w-2xl">
+                        本次需求整合旨在將評比流程標準化、強化追蹤管考效率，並提升使用者操作便利性，期望透過系統升級，達成更高效的行政管理目標。
+                    </p>
+                    <p class="mt-8 text-2xl font-semibold text-slate-700">
+                        感謝您的閱覽
+                    </p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Navigation -->
+        <footer class="flex items-center justify-between p-4 bg-gray-50 border-t border-slate-200">
+            <div>
+                 <span id="current-slide" class="text-sm font-medium text-slate-700">1</span>
+                 <span class="text-slate-500"> / </span>
+                 <span id="total-slides" class="text-sm text-slate-500">17</span>
+            </div>
+            <div class="flex gap-2">
+                <button id="home-btn" class="bg-slate-200 hover:bg-slate-300 text-slate-700 p-2 rounded-md transition-colors" title="回到目錄">
+                    <i data-lucide="home" class="w-5 h-5"></i>
+                </button>
+                <button id="prev-btn" class="bg-slate-200 hover:bg-slate-300 disabled:bg-slate-100 disabled:text-slate-400 text-slate-700 p-2 rounded-md transition-colors">
+                    <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                </button>
+                <button id="next-btn" class="bg-indigo-600 hover:bg-indigo-500 text-white p-2 rounded-md transition-colors">
+                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slide');
+            const homeBtn = document.getElementById('home-btn');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const currentSlideEl = document.getElementById('current-slide');
+            const totalSlidesEl = document.getElementById('total-slides');
+            const nextBtnColorA = 'bg-indigo-600';
+            const nextBtnHoverColorA = 'hover:bg-indigo-500';
+            const nextBtnColorB = 'bg-teal-600';
+            const nextBtnHoverColorB = 'hover:bg-teal-500';
+
+            let currentSlide = 0;
+            const totalSlides = slides.length;
+            const sectionBStartIndex = 9;
+
+            totalSlidesEl.textContent = totalSlides;
+
+            const updateButtonColors = (index) => {
+                if (index < sectionBStartIndex) {
+                    nextBtn.classList.remove(nextBtnColorB, nextBtnHoverColorB);
+                    nextBtn.classList.add(nextBtnColorA, nextBtnHoverColorA);
+                } else {
+                    nextBtn.classList.remove(nextBtnColorA, nextBtnHoverColorA);
+                    nextBtn.classList.add(nextBtnColorB, nextBtnHoverColorB);
+                }
+            };
+
+            const showSlide = (index) => {
+                slides.forEach((slide, i) => {
+                    slide.classList.toggle('active', i === index);
+                });
+                currentSlideEl.textContent = index + 1;
+                prevBtn.disabled = index === 0;
+                nextBtn.disabled = index === totalSlides - 1;
+                updateButtonColors(index);
+                lucide.createIcons();
+            };
+            
+            window.goToSlide = (slideIndex) => {
+                if(slideIndex >= 0 && slideIndex < totalSlides) {
+                    currentSlide = slideIndex;
+                    showSlide(currentSlide);
+                }
+            };
+
+            homeBtn.addEventListener('click', () => goToSlide(1));
+
+            prevBtn.addEventListener('click', () => {
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    showSlide(currentSlide);
+                }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                if (currentSlide < totalSlides - 1) {
+                    currentSlide++;
+                    showSlide(currentSlide);
+                }
+            });
+
+            // Initial setup
+            showSlide(currentSlide);
+        });
+    </script>
+</body>
+</html>
+
+
